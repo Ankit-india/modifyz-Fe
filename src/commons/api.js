@@ -1,6 +1,6 @@
-const BASE_URL = "http://192.168.1.5:7080/api/v1";
+const BASE_URL = "http://192.168.244.55:7080/api/v1";
 
-const getRequest = async (endpoint) => {
+const getRequest = async (endpoint, data) => {
   try {
     const response = await fetch(`${BASE_URL}/${endpoint}`, {
       method: "GET",
@@ -9,7 +9,10 @@ const getRequest = async (endpoint) => {
         // Add any other headers you need here
       },
     });
-
+    if (data != null) {
+      requestOptions.body = JSON.stringify(data);
+    }
+    console.log(BASE_URL + "/" + endpoint);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -46,7 +49,6 @@ const postRequest = async (endpoint, data) => {
     throw new Error(`API POST request failed: ${error.message}`);
   }
 };
-
 const putRequest = async (endpoint, data) => {
   try {
     const response = await fetch(`${BASE_URL}/${endpoint}`, {

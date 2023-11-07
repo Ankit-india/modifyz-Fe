@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Image,
   Text,
@@ -9,6 +9,16 @@ import {
 import style from "../styles/style";
 
 const Welcome = (props) => {
+  useEffect(() => {
+    // Use setTimeout to navigate after 2 seconds
+    const timer = setTimeout(() => {
+      props.navigation.replace("SIGN IN");
+    }, 2000);
+
+    // Clear the timer when the component unmounts
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <View>
       <Image
@@ -17,7 +27,6 @@ const Welcome = (props) => {
           width: "100%",
           position: "absolute",
           zIndex: -1,
-          
         }}
         source={require("../../assets/Barber3.jpg")}
       />
@@ -53,12 +62,12 @@ const Welcome = (props) => {
           </Text>
         </View>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{ gap: 30, paddingHorizontal: 25 }}
           onPress={() => props.navigation.navigate("SIGN IN")}
         >
           <Text style={style.button}>NEXT</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

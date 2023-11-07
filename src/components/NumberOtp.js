@@ -39,7 +39,8 @@ const NumberOtp = (props) => {
       const responseData = await postRequest(endpoint, requestBody);
       console.log(responseData);
       if (responseData.statusCode === 200) {
-        props.navigation.navigate("/");
+        const endpoint = `shop/list`
+        props.navigation.replace("/");
       } else {
         Alert.alert("Otp not match", responseData.message);
       }

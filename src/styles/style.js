@@ -3,11 +3,12 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
 const style = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 + 5,
   },
   container: {
     paddingHorizontal: 25,
     paddingBottom: 25,
+    paddingTop: 35,
     flex: 1,
     gap: 21,
     flexDirection: "column",
@@ -33,6 +34,7 @@ const style = StyleSheet.create({
     gap: 15,
   },
   inputFieldContainer: {
+    marginTop: 5,
     paddingHorizontal: 10,
     flexDirection: "row",
     justifyContent: "center",
@@ -49,6 +51,7 @@ const style = StyleSheet.create({
     paddingVertical: 5,
   },
   button: {
+    marginTop: 10,
     backgroundColor: "#1217a4",
     borderRadius: 30,
     textAlign: "center",

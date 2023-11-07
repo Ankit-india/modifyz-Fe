@@ -10,7 +10,6 @@ import {
   View,
 } from "react-native";
 import style from "../styles/style";
-import DontHaveAccount from "./DontHaveAccount";
 import { useForm, Controller } from "react-hook-form";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RadioButton } from "react-native-paper";
@@ -26,11 +25,12 @@ const Signin = (props) => {
   const onSubmit = async (data) => {
     try {
       const phoneNumber = data.number;
+      // const phoneNumber = data.number.replace(/\D/g, ""); // Remove non-digit characters
       const selectedGender = gender;
       const endpoint = `login/?phoneNumber=${phoneNumber}&gender=${selectedGender}`;
       const responseData = await postRequest(endpoint, null);
       if (responseData.statusCode === 200) {
-        props.navigation.navigate("OTP", {
+        props.navigation.replace("OTP", {
           phoneNumber: phoneNumber,
         });
       } else {
@@ -42,7 +42,7 @@ const Signin = (props) => {
   };
 
   const number = watch("number");
-  const maxLength = 10;
+  const maxLength = 13;
 
   useEffect(() => {
     if (number && number.toString().length > maxLength) {
@@ -64,7 +64,6 @@ const Signin = (props) => {
               source={require("../../assets/loginIcon.png")}
             />
           </View>
-
           <View>
             <Text
               style={{ fontWeight: "bold", fontSize: 50, textAlign: "center" }}
@@ -72,7 +71,6 @@ const Signin = (props) => {
               Let's you in
             </Text>
           </View>
-
           <View style={{ gap: 25, marginVertical: 30 }}>
             <View>
               <Controller
@@ -132,7 +130,7 @@ const Signin = (props) => {
             </TouchableOpacity>
           </View>
 
-          <View>
+          {/* <View>
             <Text style={style.or}>or</Text>
           </View>
 
@@ -142,7 +140,7 @@ const Signin = (props) => {
             <Text style={style.button}>Sign in with password</Text>
           </TouchableOpacity>
 
-          <DontHaveAccount data={props} />
+          <DontHaveAccount data={props} /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

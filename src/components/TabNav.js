@@ -7,7 +7,6 @@ import Explore from "./Explore";
 import MyBooking from "./MyBooking";
 import Inbox from "./Inbox";
 import { Ionicons, AntDesign, SimpleLineIcons } from "@expo/vector-icons";
-// import TabTopNav from "./TabTopNav";
 
 const Tab = createBottomTabNavigator();
 

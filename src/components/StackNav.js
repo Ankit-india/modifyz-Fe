@@ -28,6 +28,7 @@ import ProfileLanguage from "./ProfileLanguage";
 import ProfilePrivacyPolicy from "./ProfilePrivacyPolicy";
 import ProfileInviteFriend from "./ProfileInviteFriend";
 import NumberOtp from "./NumberOtp";
+// import MerchantForm from "./MerchantForm";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,13 @@ const StackNav = () => {
             headerShown: false,
           }}
         />
+        {/* <Stack.Screen
+          name="MERCHANT FORM"
+          component={MerchantForm}
+          options={{
+            headerShown: false,
+          }}
+        /> */}
         <Stack.Screen
           name="SIGN IN"
           component={Signin}
@@ -80,6 +88,7 @@ const StackNav = () => {
           }
         />
         <Stack.Screen
+          initialRouteName="/"
           name="/"
           component={TabNav}
           options={{

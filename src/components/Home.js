@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, ScrollView } from "react-native";
-
+import React, { useEffect, useState } from "react";
 import style from "../styles/style";
 import DiscountCard from "./DiscountCard";
 import Card from "./Card";
@@ -8,8 +8,32 @@ import CommonLinkWithImage from "./CommonLinkWithImage";
 import SearchBar from "./SearchBar";
 import SeeAll from "./SeeAll";
 import { Ionicons } from "@expo/vector-icons";
+import { getRequest } from "../commons/api";
 
 const Home = (props) => {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Define the API endpoint you want to call
+  const apiEndpoint = `shop/shopInfo`;
+
+  useEffect(() => {
+    // Function to make the API call
+    const fetchData = async () => {
+      try {
+        const responseData = await getRequest(apiEndpoint);
+        console.log(responseData);
+        setData(responseData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData(); // Call the API when the component mounts
+  }, []);
+
   return (
     <SafeAreaView>
       <ScrollView>
